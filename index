@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Iterize is an open-source Python development environment for structured AI-assisted planning, targeted coding, review, project memory and verification."
+    >
+
+    <title>Iterize IDE — Structured AI-Assisted Software Development</title>
+    <link rel="canonical" href="https://www.iterize.org/">
+    <meta name="theme-color" content="#0f1224">
+
+    <!-- Favicons carried over from the existing Iterize site -->
+    <link rel="icon" type="image/x-icon" href="assets/it3_result.ico?v=2">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/it3_result.ico?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/it3_result32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/it3_result16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/it3_result180.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.iterize.org/">
+    <meta property="og:title" content="Iterize — Structured AI-Assisted Software Development">
+    <meta property="og:description" content="Plan, build, review and verify software with persistent project context and controlled iteration.">
+    <meta property="og:image" content="https://www.iterize.org/assets/it3.png">
+    <meta property="og:site_name" content="Iterize">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Iterize — Structured AI-Assisted Software Development">
+    <meta name="twitter:description" content="Plan, build, review and verify software with persistent project context and controlled iteration.">
+    <meta name="twitter:image" content="https://www.iterize.org/assets/it3.png">
+
+    <!-- Organization and website schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Iterize",
+        "url": "https://www.iterize.org/",
+        "logo": "https://www.iterize.org/assets/it3.png"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Iterize",
+        "url": "https://www.iterize.org/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Iterize"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --page-dark: #090b1b;
+            --section-dark: #0f1224;
+            --panel-dark: #1b1b2f;
+            --panel-border: #2a2f45;
+
+            --text-main: #ffffff;
+            --text-soft: #cbd5e1;
+            --text-muted: #98a2b3;
+
+            --amber: #ffcc70;
+            --orange: #ff8c00;
+            --red: #b22222;
+            --cyan: #5ed1d1;
+
+            --content-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            font-family:
+                "Segoe UI",
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                sans-serif;
+
+            color: var(--text-main);
+            background: var(--page-dark);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* Header */
+
+        .site-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+
+            width: 100%;
+            padding: 22px 32px;
+
+            background: rgba(3, 4, 14, 0.74);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            width: min(100%, var(--content-width));
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+        }
+
+      .site-name {
+    font-family: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+
+    background: linear-gradient(
+        90deg,
+        #ff3b1f 0%,
+        #ff6a00 50%,
+        #ffb000 100%
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 24px rgba(255, 90, 0, 0.18);
+}
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .main-nav a {
+            color: var(--amber);
+            font-weight: 650;
+            text-decoration: none;
+            transition:
+                color 180ms ease,
+                transform 180ms ease;
+        }
+
+        .main-nav a:hover {
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+
+        .hero {
+            position: relative;
+            isolation: isolate;
+
+            display: flex;
+            align-items: center;
+
+            min-height: 830px;
+            padding: 160px 32px 100px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    115deg,
+                    #4b0082,
+                    #8d0d55,
+                    #b22222,
+                    #ff8c00
+                );
+
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+
+            background:
+                radial-gradient(
+                    circle at 25% 40%,
+                    rgba(126, 42, 255, 0.28),
+                    transparent 34%
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(6, 4, 26, 0.34),
+                    rgba(6, 4, 26, 0.08)
+                );
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 420px;
+            align-items: center;
+            gap: 60px;
+
+            width: min(100%, var(--content-width));
+            margin: 0 auto;
+        }
+
+        .hero-copy {
+            max-width: 720px;
+        }
+
+        .eyebrow {
+            margin: 0 0 20px;
+
+            color: var(--amber);
+            font-size: 0.8rem;
+            font-weight: 750;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            margin: 0;
+
+            font-size: clamp(3.2rem, 7vw, 6.8rem);
+            line-height: 0.96;
+            letter-spacing: -0.065em;
+        }
+
+        .hero h1 span {
+            display: block;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff 5%,
+                #ddefff 48%,
+                #70e3e3 100%
+            );
+
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin: 30px 0 0;
+
+            color: rgba(255, 255, 255, 0.88);
+            font-size: clamp(1.05rem, 2vw, 1.28rem);
+            line-height: 1.65;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 38px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            min-height: 52px;
+            padding: 0 23px;
+
+            border: 1px solid transparent;
+            border-radius: 9px;
+
+            font-weight: 750;
+            text-decoration: none;
+
+            transition:
+                transform 180ms ease,
+                box-shadow 180ms ease,
+                background 180ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #ffffff;
+            background: linear-gradient(
+                90deg,
+                var(--red),
+                var(--orange)
+            );
+
+            box-shadow:
+                0 12px 30px rgba(178, 34, 34, 0.32),
+                0 0 24px rgba(255, 140, 0, 0.18);
+        }
+
+        .button-primary:hover {
+            box-shadow:
+                0 16px 38px rgba(178, 34, 34, 0.42),
+                0 0 30px rgba(255, 140, 0, 0.25);
+        }
+
+        .button-secondary {
+            color: #ffffff;
+            background: rgba(5, 6, 20, 0.28);
+            border-color: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(7px);
+        }
+
+        .button-secondary:hover {
+            background: rgba(5, 6, 20, 0.46);
+        }
+
+        /* Neural graphic */
+
+        .hero-graphic {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 520px;
+        }
+
+        .hero-graphic::before {
+            content: "";
+            position: absolute;
+
+            width: 390px;
+            height: 390px;
+
+            border-radius: 50%;
+            background: rgba(61, 225, 225, 0.15);
+            filter: blur(70px);
+        }
+
+        .synapse-graphic {
+            position: relative;
+            z-index: 1;
+
+            width: min(100%, 390px);
+            max-height: 560px;
+            object-fit: contain;
+
+            opacity: 0.72;
+
+            filter:
+                drop-shadow(0 0 30px rgba(94, 209, 209, 0.25))
+                drop-shadow(0 0 55px rgba(178, 34, 34, 0.18));
+        }
+
+        /* Information section */
+
+        .platform-section {
+            padding: 100px 32px;
+            background: var(--section-dark);
+        }
+
+        .section-inner {
+            width: min(100%, var(--content-width));
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin-bottom: 46px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 16px;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            line-height: 1.06;
+            letter-spacing: -0.045em;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .info-panel {
+            position: relative;
+            min-height: 250px;
+            padding: 28px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(34, 34, 61, 0.98),
+                    rgba(22, 22, 42, 0.98)
+                );
+
+            border: 1px solid var(--panel-border);
+            border-radius: 14px;
+
+            transition:
+                transform 180ms ease,
+                border-color 180ms ease,
+                box-shadow 180ms ease;
+        }
+
+        .info-panel::after {
+            content: "";
+            position: absolute;
+            top: -70px;
+            right: -70px;
+
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+            background: rgba(94, 209, 209, 0.08);
+            filter: blur(10px);
+        }
+
+        .info-panel:hover {
+            transform: translateY(-4px);
+            border-color: rgba(94, 209, 209, 0.42);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+        }
+
+        .panel-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 38px;
+            height: 38px;
+            margin-bottom: 28px;
+
+            color: var(--amber);
+            background: rgba(255, 204, 112, 0.09);
+            border: 1px solid rgba(255, 204, 112, 0.25);
+            border-radius: 9px;
+
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .info-panel h3 {
+            margin: 0 0 12px;
+            font-size: 1.25rem;
+        }
+
+        .info-panel p {
+            margin: 0;
+            color: #c9c9d1;
+            line-height: 1.65;
+        }
+
+        /* Download section */
+
+        .download-section {
+            position: relative;
+            padding: 110px 32px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #090b1b,
+                    #17112b 55%,
+                    #2b101c
+                );
+        }
+
+        .download-box {
+            position: relative;
+            width: min(100%, 900px);
+            margin: 0 auto;
+            padding: 58px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(10px);
+        }
+
+        .download-box h2 {
+            margin: 0 0 16px;
+            font-size: clamp(2.2rem, 5vw, 3.7rem);
+            letter-spacing: -0.045em;
+        }
+
+        .download-box p {
+            max-width: 630px;
+            margin: 0 auto 30px;
+
+            color: var(--text-soft);
+            font-size: 1.08rem;
+            line-height: 1.65;
+        }
+
+        .download-note {
+            display: block;
+            margin-top: 18px;
+
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Footer and email */
+
+        .site-footer {
+            padding: 32px;
+
+            color: var(--text-muted);
+            background: #070914;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+
+            width: min(100%, var(--content-width));
+            margin: 0 auto;
+        }
+
+        .footer-inner p {
+            margin: 0;
+        }
+
+        .email-link {
+            color: var(--amber);
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        .email-link:hover {
+            color: #ffffff;
+        }
+
+        /* Contact */
+
+        .contact-section {
+            padding: 90px 32px;
+            background: #0b0e20;
+        }
+
+        .contact-box {
+            width: min(100%, 760px);
+            margin: 0 auto;
+            padding: 42px;
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 16px;
+        }
+
+        .contact-box h2 {
+            margin: 0 0 10px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: -0.04em;
+        }
+
+        .contact-box > p {
+            margin: 0 0 28px;
+            color: var(--text-soft);
+            line-height: 1.65;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            gap: 7px;
+        }
+
+        .form-row label {
+            color: var(--text-soft);
+            font-weight: 650;
+        }
+
+        .form-row input,
+        .form-row textarea {
+            width: 100%;
+            padding: 13px 14px;
+            color: var(--text-main);
+            background: #11152b;
+            border: 1px solid #313752;
+            border-radius: 8px;
+            font: inherit;
+        }
+
+        .form-row textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-row input:focus,
+        .form-row textarea:focus {
+            outline: 2px solid rgba(94, 209, 209, 0.45);
+            outline-offset: 1px;
+            border-color: var(--cyan);
+        }
+
+        .legal-link {
+    margin-top: 14px;
+    padding: 7px 14px;
+
+    color: var(--amber);
+    background: transparent;
+
+    border: 1px solid rgba(255, 204, 112, 0.45);
+    border-radius: 7px;
+
+    font-size: 0.8rem;
+    font-weight: 650;
+
+    cursor: pointer;
+}
+
+.legal-link:hover {
+    color: #ffffff;
+    border-color: var(--orange);
+    background: rgba(255, 140, 0, 0.08);
+}
+
+.legal-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+}
+
+.legal-modal.open {
+    display: flex;
+}
+
+.legal-modal-box {
+    position: relative;
+
+    width: min(100%, 760px);
+    max-height: 80vh;
+    overflow-y: auto;
+
+    padding: 36px;
+
+    color: var(--text-main);
+    background: #15172b;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.legal-modal-box h2 {
+    margin-top: 0;
+}
+
+.legal-modal-box p {
+    color: var(--text-soft);
+    line-height: 1.7;
+}
+
+.legal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    color: #ffffff;
+    background: transparent;
+    border: 0;
+
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+        .contact-form .button {
+            justify-self: start;
+            cursor: pointer;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .hero-graphic {
+                position: absolute;
+                top: 165px;
+                right: -90px;
+                z-index: -1;
+
+                width: 410px;
+                opacity: 0.42;
+            }
+
+            .panel-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .site-header {
+                padding: 18px 20px;
+            }
+
+            .brand-mark {
+                width: 38px;
+                height: 38px;
+            }
+
+            .site-name {
+                font-size: 1.7rem;
+            }
+
+            .main-nav {
+                gap: 16px;
+            }
+
+            .hero {
+                min-height: 760px;
+                padding: 145px 20px 80px;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 16vw, 4.7rem);
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-graphic {
+                top: 150px;
+                right: -170px;
+                opacity: 0.3;
+            }
+
+            .platform-section,
+            .download-section,
+            .contact-section {
+                padding: 76px 20px;
+            }
+
+            .download-box {
+                padding: 40px 22px;
+            }
+
+            .contact-box {
+                padding: 32px 22px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .hero {
+                animation: none;
+            }
+
+            .button,
+            .info-panel,
+            .main-nav a {
+                transition: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+
+            <a class="brand" href="#top" aria-label="Iterize home">
+                <img
+                    class="brand-mark"
+                    src="assets/it3.png"
+                    alt=""
+                >
+                <span class="site-name">Iterize IDE</span>
+            </a>
+
+
+<nav class="main-nav" aria-label="Main navigation">
+    <a href="https://github.com/Kosev-Lex/Iterize" target="_blank" rel="noopener noreferrer">
+        GitHub
+    </a>
+    <a href="downloads/Iterize-v1.0.0-Windows.zip">Download</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+
+
+        </div>
+    </header>
+
+    <main id="top">
+
+        <section class="hero">
+            <div class="hero-inner">
+
+                <div class="hero-copy">
+                    <p class="eyebrow">A focused open source multi AI agentic coding platform</p>
+
+                    <h1>
+                        Build with clarity.
+                        <span>Iterate without limits.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Iterize brings code, project context and intelligent
+                        assistance into one concentrated workspace, designed
+                        to help you keep track of large, complex projects and move
+                        from idea to working software.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a
+                            class="button button-primary"
+                            href="downloads/Iterize-v1.0.0-Windows.zip"
+                            download
+                        >
+                            Download Iterize
+                            <span aria-hidden="true"></span>
+                        </a>
+
+                        <a
+                            class="button button-secondary"
+                             href="https://github.com/Kosev-Lex/Iterize"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                        >
+                            Get from Github
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-graphic" aria-hidden="true">
+                    <img
+                        class="synapse-graphic"
+                        src="assets/syn1.png"
+                        alt=""
+                    >
+                </div>
+
+            </div>
+        </section>
+
+        <section class="platform-section" id="platform">
+            <div class="section-inner">
+
+                <div class="section-heading">
+                    <p class="eyebrow">The workspace</p>
+
+                    <h2>
+                        Keep the whole project in view.
+                    </h2>
+
+                    <p>
+                        Iterize is designed for work that extends beyond a
+                        single file. Explore structure, follow relationships
+                        and refine your code without losing the larger idea.
+                    </p>
+                </div>
+
+                <div class="panel-grid">
+
+                    <article class="info-panel">
+                        <span class="panel-number">01</span>
+
+                        <h3>Project-aware workspace</h3>
+
+                        <p>
+                            Work across connected files while keeping the
+                            structure and purpose of the broader project
+                            visible.
+                        </p>
+                    </article>
+
+                    <article class="info-panel">
+                        <span class="panel-number">02</span>
+
+                        <h3>Intelligent assistance</h3>
+
+                        <p>
+                            Use your choice of APIs to examine code and reason through changes with
+                            agent assistance at all the points it's needed.
+                        </p>
+                    </article>
+
+                    <article class="info-panel">
+                        <span class="panel-number">03</span>
+
+                        <h3>Built for iteration</h3>
+
+                        <p>
+                            Streamline exploration, editing,
+                            testing and refinement as the project evolves.
+
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="download-section" id="download">
+            <div class="download-box">
+
+                <p class="eyebrow">Start building</p>
+
+                <h2>Download Iterize</h2>
+
+                <p>
+                    Install the desktop platform and bring your code
+                    into one focused environment.<br>
+                    <button class="legal-link" type="button" onclick="openLegal()">
+                                Legal notice
+                    </button>                </p>
+
+                <a
+                    class="button button-primary"
+                    href="downloads/iterize.zip"
+                    download
+                >
+                    Download for Windows
+                    <span aria-hidden="true"></span>
+                </a>
+
+                <span class="download-note">
+                    Version 1.0.0 for Windows.
+                </span>
+
+            </div>
+        </section>
+
+<div id="legal-modal" class="legal-modal" aria-hidden="true">
+    <div class="legal-modal-box">
+        <button class="legal-close" type="button" onclick="closeLegal()" aria-label="Close">
+            ×
+        </button>
+
+        <h2>Legal Notice</h2>
+
+        <p>
+        Disclaimer & Indemnity (8 August 2026)<br><br>
+
+Iterize is open-source software provided “as is”, without warranties of any kind, express or implied. Use of the software is entirely at your own risk. To the maximum extent permitted by law, the authors and contributors are not liable for any loss, damage, data loss, system failure, business interruption, or other claim arising from its use or inability to use it.
+
+You are responsible for how you install, configure, modify, distribute, or use Iterize, including any code, commands, or output produced through connected AI services.
+
+By using or distributing Iterize, you agree, to the extent permitted by law, to indemnify and hold harmless its authors and contributors from claims, liabilities, damages, or expenses arising from your use, modification, distribution, or misuse of the software.
+
+Iterize is licensed under the Apache License 2.0. Where this notice and that licence differ, the Apache License 2.0 governs.
+        </p>
+    </div>
+</div>
+
+
+        <section class="contact-section" id="contact">
+            <div class="contact-box">
+                <p class="eyebrow">Contact</p>
+                <h2>Questions or feedback?</h2>
+                <p></p>
+
+                <!-- Netlify detects this form during deployment. No Flask backend required. -->
+                <form
+                    class="contact-form"
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                >
+                    <input type="hidden" name="form-name" value="contact">
+                    <p hidden>
+                        <label>Do not fill this out: <input name="bot-field"></label>
+                    </p>
+
+                    <div class="form-row">
+                        <label for="contact-name">Your name</label>
+                        <input id="contact-name" type="text" name="name" autocomplete="name">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="contact-email">Your email</label>
+                        <input id="contact-email" type="email" name="email" autocomplete="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="contact-message">Message</label>
+                        <textarea id="contact-message" name="message" required></textarea>
+                    </div>
+
+                    <button class="button button-primary" type="submit">Send message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+
+
+<p>
+    © 2026 Iterize.org
+</p>
+
+<p>
+    <a href="https://github.com/Kosev-Lex/Iterize">
+        GitHub
+    </a>
+</p>
+
+</div>
+</footer>
+
+<script>
+function openLegal() {
+    const modal = document.getElementById("legal-modal");
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+}
+
+function closeLegal() {
+    const modal = document.getElementById("legal-modal");
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+}
+
+document.getElementById("legal-modal").addEventListener("click", function (event) {
+    if (event.target === this) {
+        closeLegal();
+    }
+});
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeLegal();
+    }
+});
+</script>
+
+</body>
+</html>
