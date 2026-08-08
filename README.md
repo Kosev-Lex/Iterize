@@ -260,7 +260,7 @@ The editor can optionally make a Git checkpoint on save. These mechanisms comple
 
 ### Snapshots
 
-The left sidebar contains the code structure. Where checkboxes are ticked, those parts of the code are snapshotted in an open state — the full function is expanded. If unchecked, only the function heading is included. This allows a compressed overview of a module, or specific parts of it, without including the full source.
+The left sidebar contains the code structure. Where checkboxes are ticked, those parts of the code are snapshotted in an open state — the full function is expanded. If unchecked, only the function heading is included. This allows a compressed overview of a module, or specific parts of it, without including the full source. You can snapshot important focal points, or just the overall skeleton of the code you are working on.
 
 ### API and Security Model
 
