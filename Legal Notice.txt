@@ -1,0 +1,10 @@
+Legal Notice
+
+Disclaimer & Indemnity (8 August 2026)
+
+Iterize is open-source software provided “as is”, without warranties of any kind, express or implied. Use of the software is entirely at your own risk. 
+To the maximum extent permitted by law, the authors and contributors are not liable for any loss, damage, data loss, system failure, business interruption, 
+or other claim arising from its use or inability to use it. You are responsible for how you install, configure, modify, distribute, or use Iterize, 
+including any code, commands, or output produced through connected AI services. By using or distributing Iterize, you agree, to the extent permitted by law, 
+to indemnify and hold harmless its authors and contributors from claims, liabilities, damages, or expenses arising from your use, modification, distribution, 
+or misuse of the software. Iterize is licensed under the Apache License 2.0. Where this notice and that licence differ, the Apache License 2.0 governs. 
